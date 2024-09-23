@@ -16,7 +16,6 @@ document.querySelector(".container").appendChild(form);
 async function displayData(input) {
   const data = await fetchData(input);
   if (data !== 0) {
-    console.log(data);
     temperature.textContent = `TEMP:${data.currentConditions.temp}°C/${data.currentConditions.feelslike}°C`;
     condition.src = icons(`./${data.currentConditions.icon}.png`);
     conditionText.textContent = data.currentConditions.conditions;
