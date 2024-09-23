@@ -1,5 +1,5 @@
 import { fetchData } from "./Modules/fetch-data";
-
+import "./style.css";
 const icons = require.context("./icons", false, /\.(png|jpe?g|gif|svg)$/);
 const temperature = document.querySelector("#temperature");
 const location = document.querySelector("#location");
@@ -16,10 +16,10 @@ document.querySelector(".container").appendChild(form);
 async function displayData(input) {
   const data = await fetchData(input);
   if (data !== 0) {
-    temperature.textContent = `TEMP:${data.currentConditions.temp}°C/${data.currentConditions.feelslike}°C`;
+    temperature.textContent = `${data.currentConditions.temp}°C/${data.currentConditions.feelslike}°C`;
     condition.src = icons(`./${data.currentConditions.icon}.png`);
     conditionText.textContent = data.currentConditions.conditions;
-    time.textContent = `TIME: ${data.currentConditions.datetime}`;
+    time.textContent = `Time: ${data.currentConditions.datetime}`;
     location.textContent = data.timezone;
   }
 }
