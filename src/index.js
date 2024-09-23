@@ -13,25 +13,22 @@ userInput.id = "userInput";
 form.appendChild(userInput);
 document.querySelector(".container").appendChild(form);
 
-
-async function displayData(input){
-    const data = await fetchData(input);
-    if (data !== 0){
-        console.log(data);
-        temperature.textContent = `TEMP:${data.currentConditions.temp}°C/${data.currentConditions.feelslike}°C`;
-        condition.src = icons(`./${data.currentConditions.icon}.png`);
-        conditionText.textContent = data.currentConditions.conditions;
-        time.textContent = `TIME: ${data.currentConditions.datetime}`;
-        location.textContent = data.timezone;
-    };
+async function displayData(input) {
+  const data = await fetchData(input);
+  if (data !== 0) {
+    console.log(data);
+    temperature.textContent = `TEMP:${data.currentConditions.temp}°C/${data.currentConditions.feelslike}°C`;
+    condition.src = icons(`./${data.currentConditions.icon}.png`);
+    conditionText.textContent = data.currentConditions.conditions;
+    time.textContent = `TIME: ${data.currentConditions.datetime}`;
+    location.textContent = data.timezone;
+  }
 }
 
-
 form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    displayData(userInput.value);
+  e.preventDefault();
+  displayData(userInput.value);
 });
 window.fetchData = fetchData;
-
 
 displayData("london");
